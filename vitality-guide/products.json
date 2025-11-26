@@ -1,0 +1,113 @@
+[
+  {
+    "id": "vh-001",
+    "name": "Energy Boost Formula",
+    "category": "Energy",
+    "price": 34.99,
+    "description": "Natural energy support with B-vitamins and adaptogens. As seen in your wireframes.",
+    "image_path": "images/energy-boost-formula.jpg",
+    "api_keywords": { "recipe": "energizing smoothie", "exercise": "cardio" }
+  },
+  {
+    "id": "vh-002",
+    "name": "Energy Formula",
+    "category": "Energy",
+    "price": 29.99,
+    "description": "A daily essential blend for consistent vitality. Mentioned in your Desktop Home wireframe.",
+    "image_path": "images/energy-formula.jpg",
+    "api_keywords": { "recipe": "matcha", "exercise": "hiit" }
+  },
+  {
+    "id": "vh-003",
+    "name": "Green Tea Focus",
+    "category": "Energy",
+    "price": 19.99,
+    "description": "Pure green tea extract to sharpen your mind without the crash.",
+    "image_path": "images/green-tea-focus.jpg",
+    "api_keywords": { "recipe": "protein bites", "exercise": "aerobics" }
+  },
+  {
+    "id": "vh-004",
+    "name": "Digestive Support",
+    "category": "Digestion",
+    "price": 34.99,
+    "description": "Comprehensive enzyme blend to reduce bloating. Mentioned in your Desktop Home wireframe.",
+    "image_path": "images/digestive-support.jpg",
+    "api_keywords": { "recipe": "ginger tea", "exercise": "yoga" }
+  },
+  {
+    "id": "vh-005",
+    "name": "Probiotic Balance",
+    "category": "Digestion",
+    "price": 24.99,
+    "description": "Daily probiotic with 10 strains to maintain a healthy gut microbiome.",
+    "image_path": "images/probiotic-balance.jpg",
+    "api_keywords": { "recipe": "yogurt parfait", "exercise": "walking" }
+  },
+  {
+    "id": "vh-006",
+    "name": "Gut Restore Powder",
+    "category": "Digestion",
+    "price": 39.99,
+    "description": "L-Glutamine and soothing herbs to repair and protect your digestive lining.",
+    "image_path": "images/gut-restore.jpg",
+    "api_keywords": { "recipe": "bone broth", "exercise": "pilates" }
+  },
+  {
+    "id": "vh-007",
+    "name": "Detox Blend",
+    "category": "Detox",
+    "price": 39.99,
+    "description": "Herbal complex for liver assistance. Mentioned in your Desktop Home wireframe.",
+    "image_path": "images/detox-blend.jpg",
+    "api_keywords": { "recipe": "green juice", "exercise": "stretching" }
+  },
+  {
+    "id": "vh-008",
+    "name": "Immunity Boost",
+    "category": "Detox",
+    "price": 32.99,
+    "description": "Strengthen defenses with Vitamin C & Zinc. Mentioned in your Desktop Home wireframe.",
+    "image_path": "images/immunity-boost.jpg",
+    "api_keywords": { "recipe": "citrus salad", "exercise": "light jogging" }
+  },
+  {
+    "id": "vh-009",
+    "name": "Cleanse & Reset",
+    "category": "Detox",
+    "price": 29.99,
+    "description": "A gentle 7-day cleanse to refresh your system and reduce water retention.",
+    "image_path": "images/cleanse-reset.jpg",
+    "api_keywords": { "recipe": "detox water", "exercise": "meditation" }
+  },
+  {
+    "id": "vh-010",
+    "name": "Iron Strength Protein",
+    "category": "Strength",
+    "price": 49.99,
+    "description": "Premium whey isolate for muscle recovery. Matches your 'Strength' category goal.",
+    "image_path": "images/iron-strength.jpg",
+    "api_keywords": { "recipe": "protein shake", "exercise": "weightlifting" }
+  },
+  {
+    "id": "vh-011",
+    "name": "Plant Power Protein",
+    "category": "Strength",
+    "price": 44.99,
+    "description": "Organic pea and rice protein blend for clean, vegan muscle fuel.",
+    "image_path": "images/plant-power.jpg",
+    "api_keywords": {
+      "recipe": "tofu stir fry",
+      "exercise": "bodyweight training"
+    }
+  },
+  {
+    "id": "vh-012",
+    "name": "Muscle Recovery BCAA",
+    "category": "Strength",
+    "price": 29.99,
+    "description": "Essential amino acids to reduce soreness and speed up recovery.",
+    "image_path": "images/bcaa-recovery.jpg",
+    "api_keywords": { "recipe": "chicken breast", "exercise": "crossfit" }
+  }
+]
