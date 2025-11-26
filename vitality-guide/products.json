@@ -1,113 +1,158 @@
 [
   {
     "id": "vh-001",
-    "name": "Energy Boost Formula",
+    "name": "V-Nrgy",
     "category": "Energy",
-    "price": 34.99,
-    "description": "Natural energy support with B-vitamins and adaptogens. As seen in your wireframes.",
-    "image_path": "images/energy-boost-formula.jpg",
-    "api_keywords": { "recipe": "energizing smoothie", "exercise": "cardio" }
+    "price": 29.99,
+    "description": "Powerful powdered energy drink mix with Guarana and Quercetin for sustained focus without the crash.",
+    "image_path": "images/v-nrgy.jpg",
+    "api_keywords": { "recipe": "citrus smoothie", "exercise": "hiit" }
   },
   {
     "id": "vh-002",
-    "name": "Energy Formula",
+    "name": "V-Nitro",
     "category": "Energy",
-    "price": 29.99,
-    "description": "A daily essential blend for consistent vitality. Mentioned in your Desktop Home wireframe.",
-    "image_path": "images/energy-formula.jpg",
-    "api_keywords": { "recipe": "matcha", "exercise": "hiit" }
+    "price": 34.99,
+    "description": "Nitric Oxide precursor to improve circulation, athletic performance, and cardiovascular health.",
+    "image_path": "images/v-nitro.jpg",
+    "api_keywords": { "recipe": "beet juice", "exercise": "cardio" }
   },
   {
     "id": "vh-003",
-    "name": "Green Tea Focus",
+    "name": "Thermokafe",
     "category": "Energy",
-    "price": 19.99,
-    "description": "Pure green tea extract to sharpen your mind without the crash.",
-    "image_path": "images/green-tea-focus.jpg",
+    "price": 32.99,
+    "description": "Gourmet thermogenic coffee with L-Carnitine and Garcinia Cambogia to accelerate metabolism.",
+    "image_path": "images/thermokafe.jpg",
     "api_keywords": { "recipe": "protein bites", "exercise": "aerobics" }
   },
   {
     "id": "vh-004",
-    "name": "Digestive Support",
-    "category": "Digestion",
+    "name": "Neurokafe",
+    "category": "Energy",
     "price": 34.99,
-    "description": "Comprehensive enzyme blend to reduce bloating. Mentioned in your Desktop Home wireframe.",
-    "image_path": "images/digestive-support.jpg",
-    "api_keywords": { "recipe": "ginger tea", "exercise": "yoga" }
+    "description": "Functional coffee for cognitive focus and mental clarity, supporting the gut-brain axis.",
+    "image_path": "images/neurokafe.jpg",
+    "api_keywords": { "recipe": "walnuts", "exercise": "yoga" }
   },
   {
     "id": "vh-005",
-    "name": "Probiotic Balance",
-    "category": "Digestion",
-    "price": 24.99,
-    "description": "Daily probiotic with 10 strains to maintain a healthy gut microbiome.",
-    "image_path": "images/probiotic-balance.jpg",
-    "api_keywords": { "recipe": "yogurt parfait", "exercise": "walking" }
+    "name": "Lovkafe",
+    "category": "Energy",
+    "price": 34.99,
+    "description": "Vitality coffee with Tongkat Ali and Maca to support hormonal balance and libido.",
+    "image_path": "images/lovkafe.jpg",
+    "api_keywords": { "recipe": "dark chocolate", "exercise": "pilates" }
   },
   {
     "id": "vh-006",
-    "name": "Gut Restore Powder",
+    "name": "V-Organex",
     "category": "Digestion",
     "price": 39.99,
-    "description": "L-Glutamine and soothing herbs to repair and protect your digestive lining.",
-    "image_path": "images/gut-restore.jpg",
-    "api_keywords": { "recipe": "bone broth", "exercise": "pilates" }
-  },
-  {
-    "id": "vh-007",
-    "name": "Detox Blend",
-    "category": "Detox",
-    "price": 39.99,
-    "description": "Herbal complex for liver assistance. Mentioned in your Desktop Home wireframe.",
-    "image_path": "images/detox-blend.jpg",
+    "description": "Advanced support for liver and digestive detoxification using boldo and milk thistle.",
+    "image_path": "images/v-organex.jpg",
     "api_keywords": { "recipe": "green juice", "exercise": "stretching" }
   },
   {
+    "id": "vh-007",
+    "name": "V-Glucalose",
+    "category": "Digestion",
+    "price": 34.99,
+    "description": "Natural support for glucose metabolism and insulin sensitivity.",
+    "image_path": "images/v-glucalose.jpg",
+    "api_keywords": { "recipe": "low carb salad", "exercise": "walking" }
+  },
+  {
     "id": "vh-008",
-    "name": "Immunity Boost",
+    "name": "V-Glutation +Plus",
     "category": "Detox",
-    "price": 32.99,
-    "description": "Strengthen defenses with Vitamin C & Zinc. Mentioned in your Desktop Home wireframe.",
-    "image_path": "images/immunity-boost.jpg",
-    "api_keywords": { "recipe": "citrus salad", "exercise": "light jogging" }
-  },
-  {
-    "id": "vh-009",
-    "name": "Cleanse & Reset",
-    "category": "Detox",
-    "price": 29.99,
-    "description": "A gentle 7-day cleanse to refresh your system and reduce water retention.",
-    "image_path": "images/cleanse-reset.jpg",
-    "api_keywords": { "recipe": "detox water", "exercise": "meditation" }
-  },
-  {
-    "id": "vh-010",
-    "name": "Iron Strength Protein",
-    "category": "Strength",
     "price": 49.99,
-    "description": "Premium whey isolate for muscle recovery. Matches your 'Strength' category goal.",
-    "image_path": "images/iron-strength.jpg",
-    "api_keywords": { "recipe": "protein shake", "exercise": "weightlifting" }
-  },
-  {
-    "id": "vh-011",
-    "name": "Plant Power Protein",
-    "category": "Strength",
-    "price": 44.99,
-    "description": "Organic pea and rice protein blend for clean, vegan muscle fuel.",
-    "image_path": "images/plant-power.jpg",
+    "description": "The 'Master Antioxidant' for deep cellular detoxification and immune system regeneration.",
+    "image_path": "images/v-glutation.jpg",
     "api_keywords": {
-      "recipe": "tofu stir fry",
-      "exercise": "bodyweight training"
+      "recipe": "antioxidant smoothie",
+      "exercise": "meditation"
     }
   },
   {
-    "id": "vh-012",
-    "name": "Muscle Recovery BCAA",
-    "category": "Strength",
+    "id": "vh-009",
+    "name": "V-italboost",
+    "category": "Detox",
     "price": 29.99,
-    "description": "Essential amino acids to reduce soreness and speed up recovery.",
-    "image_path": "images/bcaa-recovery.jpg",
-    "api_keywords": { "recipe": "chicken breast", "exercise": "crossfit" }
+    "description": "Powerful immune system booster to fight seasonal allergies and strengthen defenses.",
+    "image_path": "images/v-italboost.jpg",
+    "api_keywords": { "recipe": "ginger tea", "exercise": "light jogging" }
+  },
+  {
+    "id": "vh-010",
+    "name": "V-Curcumax",
+    "category": "Strength",
+    "price": 39.99,
+    "description": "Potent anti-inflammatory blend of Turmeric and MSM to reduce pain and oxidation.",
+    "image_path": "images/v-curcumax.jpg",
+    "api_keywords": { "recipe": "golden milk", "exercise": "swimming" }
+  },
+  {
+    "id": "vh-011",
+    "name": "V-Itadol",
+    "category": "Strength",
+    "price": 34.99,
+    "description": "Specialized joint support with Glucosamine and MSM to improve mobility and reduce pain.",
+    "image_path": "images/v-itadol.jpg",
+    "api_keywords": { "recipe": "bone broth", "exercise": "stretching" }
+  },
+  {
+    "id": "vh-012",
+    "name": "Omega 3",
+    "category": "Strength",
+    "price": 24.99,
+    "description": "Essential fatty acids for heart health, brain function, and joint lubrication.",
+    "image_path": "images/omega-3.jpg",
+    "api_keywords": { "recipe": "grilled salmon", "exercise": "weightlifting" }
+  },
+  {
+    "id": "vh-013",
+    "name": "Vitarly-L",
+    "category": "Strength",
+    "price": 32.99,
+    "description": "Circulation and vitality booster with L-Arginine for improved physical performance.",
+    "image_path": "images/vitarly-l.jpg",
+    "api_keywords": { "recipe": "spinach salad", "exercise": "cycling" }
+  },
+  {
+    "id": "vh-014",
+    "name": "V-Itaren",
+    "category": "Restore",
+    "price": 34.99,
+    "description": "Targeted support for kidney health and urinary tract detoxification.",
+    "image_path": "images/v-itaren.jpg",
+    "api_keywords": { "recipe": "cranberry juice", "exercise": "walking" }
+  },
+  {
+    "id": "vh-015",
+    "name": "V-Italay",
+    "category": "Restore",
+    "price": 29.99,
+    "description": "Natural stress relief and sleep aid with Valerian and Passionflower.",
+    "image_path": "images/v-italay.jpg",
+    "api_keywords": { "recipe": "chamomile tea", "exercise": "yoga" }
+  },
+  {
+    "id": "vh-016",
+    "name": "V-Asculax",
+    "category": "Restore",
+    "price": 29.99,
+    "description": "Circulatory support formula to help with varicose veins and vascular health.",
+    "image_path": "images/v-asculax.jpg",
+    "api_keywords": { "recipe": "berries", "exercise": "leg lifts" }
+  },
+  {
+    "id": "vh-017",
+    "name": "V-Daily",
+    "category": "Restore",
+    "price": 24.99,
+    "description": "Complete daily multivitamin to cover all your essential nutritional bases.",
+    "image_path": "images/v-daily.jpg",
+    "api_keywords": { "recipe": "fruit salad", "exercise": "hiking" }
   }
 ]
