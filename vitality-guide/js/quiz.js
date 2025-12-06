@@ -67,30 +67,58 @@ function attachQuizListeners() {
     });
 }
 
-// --- RESULTS GENERATION ---
 
 async function showResultsPage() {
     const app = getElement('#app');
-    renderTemplate(app, '<h2>Generating your personalized plan...</h2><p>Please wait while we coordinate your nutrition and activity data.</p>'); // Loading state
+    // Start Loading State
+    renderTemplate(app, '<h2>Generating your personalized plan...</h2><p>Please wait while we coordinate your nutrition and activity data.</p>'); 
     
     const category = finalCategory;
-    
-    // Fetch all necessary data simultaneously (Asynchronous Data Coordination)
-    const [recommendedProducts, keywords] = await Promise.all([
-        findProductsByCategory(category),
-        getKeywordsForCategory(category)
-    ]);
-    
-    const [recipes, exercises] = await Promise.all([
-        getRecipes(keywords.recipe),
-        getExercises(keywords.exercise)
-    ]);
+    let recipes = { results: [] }; // Initialize variables to ensure they exist
+    let exercises = [];
+    let recommendedProducts = [];
 
-    // Save result for LocalStorage Persistence
-    saveQuizResult({ category, recommendedProducts });
+    try {
+        // 1. Fetch Local Data and Keywords
+        const [fetchedProducts, keywords] = await Promise.all([
+            findProductsByCategory(category),
+            getKeywordsForCategory(category)
+        ]);
+        
+        recommendedProducts = fetchedProducts;
+
+        // 2. Fetch External Data (The part that is currently failing)
+        // Use Promise.all with .catch() on individual calls to prevent the whole function from halting 
+        // if one API key is invalid or rate-limited (Asynchronous Data Coordination).
+        
+        const [fetchedRecipes, fetchedExercises] = await Promise.all([
+            getRecipes(keywords.recipe).catch(err => {
+                console.error("External Recipe Fetch Failed:", err);
+                return { results: [] }; // Return empty structure on failure
+            }),
+            getExercises(keywords.exercise).catch(err => {
+                console.error("External Exercise Fetch Failed:", err);
+                return []; // Return empty array on failure
+            })
+        ]);
+
+        recipes = fetchedRecipes;
+        exercises = fetchedExercises;
+
+        // Save result for LocalStorage Persistence
+        saveQuizResult({ category, recommendedProducts });
+        
+    } catch (error) {
+        // This catch block handles errors in local data loading or critical JS failures
+        console.error("Critical error during plan generation:", error);
+        // Fallback: If local data fails, render only the error message
+        renderTemplate(app, '<h2>Error!</h2><p>We could not load the product data to generate your plan. Please check the console.</p>');
+        return; // Stop execution
+    }
     
     renderResultsPage(category, recommendedProducts, recipes, exercises);
 }
+
 
 function renderResultsPage(category, products, recipeData, exerciseData) {
     const app = getElement('#app');

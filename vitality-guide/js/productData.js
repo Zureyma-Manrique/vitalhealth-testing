@@ -1,4 +1,4 @@
-const baseURL = "../products.json";
+const baseURL = "./products.json";
 
 // Fetches the full product catalog from the local JSON file.
 export async function getProducts() {
