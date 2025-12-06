@@ -1,9 +1,30 @@
-import { getRecipes, getExercises } from './externalServices.js';
+import { initQuiz } from './quiz.js';
+import { getElement, loadQuizResult } from './utils.js';
+import { updateCartIcon } from './cart.js';
+import { getProducts } from './productData.js';
 
-// Week 1 Test: Check if APIs are working
-console.log("Vitality Guide App Initialized");
+async function init() {
+    console.log("Vitality Guide App Initialized");
+    
+    // Load product catalog (confirm data is available)
+    await getProducts();
+    
+    // Update cart count
+    updateCartIcon();
 
-// Test the connections (Check your browser console!)
-// We simulate a user who got an "Energy" result
-getRecipes("smoothie"); 
-getExercises("cardio");
+    // Attach listener to Start Quiz Button
+    const startButton = getElement('#start-quiz-btn');
+    if (startButton) {
+        startButton.addEventListener('click', () => {
+            initQuiz();
+        });
+    }
+
+    // Optional: Check for persistence (if savedResult exists, you would render the results page directly)
+    const savedResult = loadQuizResult();
+    if (savedResult) {
+        console.log("Saved quiz result found. User can resume plan.", savedResult);
+    }
+}
+
+init();

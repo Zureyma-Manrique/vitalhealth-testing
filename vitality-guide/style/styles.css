@@ -58,3 +58,171 @@ button:hover {
 .hidden {
     display: none;
 }
+
+/* Quiz View Styling */
+.quiz-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.quiz-header h2 {
+    color: #4CAF50;
+    /* Vitality Green */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.quiz-progress {
+    background: #e0e0e0;
+    height: 10px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.quiz-progress-bar {
+    background: #FF9800;
+    /* Energy Orange */
+    height: 100%;
+    transition: width 0.3s ease-in-out;
+}
+
+.quiz-question {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.quiz-options {
+    /* Desktop/Tablet: 2 columns */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.quiz-option {
+    padding: 20px 10px;
+    border: 2px solid #ddd;
+    background: #f9f9f9;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.quiz-option:hover {
+    border-color: #4CAF50;
+    background: #e0f8e0;
+    transform: translateY(-2px);
+}
+
+/* Results View Styling */
+.results-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.results-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.results-header h2 {
+    color: #4CAF50;
+    font-size: 2rem;
+}
+
+/* Desktop Grid Layout (30%/70% Split) */
+.results-grid {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 30px;
+}
+
+.match-section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.product-recommendations {
+    grid-column: 1 / 2;
+    /* Left Column (30%) */
+}
+
+/* Ensure products display vertically in the left column */
+.product-list-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.product-card img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.nutrition-plan {
+    grid-column: 2 / 3;
+    /* Right Column (70%) */
+}
+
+.recipes-grid,
+.exercises-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 cards side-by-side */
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+
+/* --- Mobile Adaptation (Stacking) --- */
+@media (max-width: 768px) {
+    .results-grid {
+        grid-template-columns: 1fr;
+        /* Single column stack */
+    }
+
+    .product-recommendations,
+    .nutrition-plan,
+    .activity-plan {
+        grid-column: 1 / -1;
+    }
+
+    .product-list-grid {
+        flex-direction: row;
+        overflow-x: auto;
+        /* Allow horizontal scroll for products */
+        padding-bottom: 10px;
+    }
+
+    .product-card {
+        min-width: 150px;
+        flex-shrink: 0;
+    }
+
+    .recipes-grid,
+    .exercises-list {
+        grid-template-columns: 1fr;
+        /* Stack recipes/exercises vertically */
+    }
+}
