@@ -1,10 +1,8 @@
-// Base URLs
 const RECIPE_URL = 'https://api.spoonacular.com/recipes/complexSearch';
 const EXERCISE_URL = 'https://api.api-ninjas.com/v1/exercises';
 
-// REPLACE THESE WITH YOUR ACTUAL KEYS
-const SPOONACULAR_KEY = 'YOUR_SPOONACULAR_KEY_HERE';
-const NINJA_KEY = 'YOUR_NINJA_KEY_HERE';
+const SPOONACULAR_KEY = '3836092ca4ce4185b1067e447da390be';
+const NINJA_KEY = 'yQdAKB2fLV7KW7y/m8B6GQ==yQiFLHiJAjys6My5';
 
 export async function getRecipes(query) {
     try {
