@@ -4,155 +4,206 @@
     "name": "V-Nrgy",
     "category": "Energy",
     "price": 29.99,
-    "description": "Powerful powdered energy drink mix with Guarana and Quercetin for sustained focus without the crash.",
+    "description": "Tropical flavored energy drink mix. Promotes natural energy, improved mood, and cognitive performance[cite: 1031].",
     "image_path": "images/v-nrgy.jpg",
     "api_keywords": { "recipe": "citrus smoothie", "exercise": "hiit" }
   },
   {
     "id": "vh-002",
-    "name": "V-Nitro",
+    "name": "Vitarly-L",
     "category": "Energy",
-    "price": 34.99,
-    "description": "Nitric Oxide precursor to improve circulation, athletic performance, and cardiovascular health.",
-    "image_path": "images/v-nitro.jpg",
-    "api_keywords": { "recipe": "beet juice", "exercise": "cardio" }
+    "price": 32.99,
+    "description": "Increases energy levels and supports good circulation. Boosts physical and mental performance[cite: 381].",
+    "image_path": "images/vitarly-l.jpg",
+    "api_keywords": { "recipe": "spinach salad", "exercise": "cycling" }
   },
   {
     "id": "vh-003",
     "name": "Thermokafe",
     "category": "Energy",
     "price": 32.99,
-    "description": "Gourmet thermogenic coffee with L-Carnitine and Garcinia Cambogia to accelerate metabolism.",
+    "description": "Gourmet black coffee that accelerates metabolism, transforms fat into energy, and increases endurance[cite: 1157].",
     "image_path": "images/thermokafe.jpg",
     "api_keywords": { "recipe": "protein bites", "exercise": "aerobics" }
   },
   {
     "id": "vh-004",
-    "name": "Neurokafe",
+    "name": "V-Itax",
     "category": "Energy",
-    "price": 34.99,
-    "description": "Functional coffee for cognitive focus and mental clarity, supporting the gut-brain axis.",
-    "image_path": "images/neurokafe.jpg",
-    "api_keywords": { "recipe": "walnuts", "exercise": "yoga" }
+    "price": 29.99,
+    "description": "Complete multivitamin that promotes energy and supports the cognitive and immune systems[cite: 934].",
+    "image_path": "images/v-itax.jpg",
+    "api_keywords": { "recipe": "fruit salad", "exercise": "hiking" }
   },
   {
     "id": "vh-005",
-    "name": "Lovkafe",
+    "name": "KetoKafe-BHB",
     "category": "Energy",
     "price": 34.99,
-    "description": "Vitality coffee with Tongkat Ali and Maca to support hormonal balance and libido.",
-    "image_path": "images/lovkafe.jpg",
-    "api_keywords": { "recipe": "dark chocolate", "exercise": "pilates" }
+    "description": "Keto-friendly coffee that increases energy, improves focus, and promotes fat burning (ketosis)[cite: 1306].",
+    "image_path": "images/ketokafe.jpg",
+    "api_keywords": { "recipe": "keto breakfast", "exercise": "cardio" }
   },
   {
     "id": "vh-006",
-    "name": "V-Organex",
+    "name": "V-FortyFlora",
     "category": "Digestion",
-    "price": 39.99,
-    "description": "Advanced support for liver and digestive detoxification using boldo and milk thistle.",
-    "image_path": "images/v-organex.jpg",
-    "api_keywords": { "recipe": "green juice", "exercise": "stretching" }
+    "price": 34.99,
+    "description": "Probiotic blend that balances gut microbiota, reduces bloating, and promotes tissue repair[cite: 504].",
+    "image_path": "images/v-fortyflora.jpg",
+    "api_keywords": { "recipe": "yogurt parfait", "exercise": "walking" }
   },
   {
     "id": "vh-007",
     "name": "V-Glucalose",
     "category": "Digestion",
     "price": 34.99,
-    "description": "Natural support for glucose metabolism and insulin sensitivity.",
+    "description": "Supports blood sugar regulation and metabolic wellness. Ideal for insulin sensitivity issues[cite: 293].",
     "image_path": "images/v-glucalose.jpg",
     "api_keywords": { "recipe": "low carb salad", "exercise": "walking" }
   },
   {
     "id": "vh-008",
-    "name": "V-Glutation +Plus",
-    "category": "Detox",
-    "price": 49.99,
-    "description": "The 'Master Antioxidant' for deep cellular detoxification and immune system regeneration.",
-    "image_path": "images/v-glutation.jpg",
-    "api_keywords": {
-      "recipe": "antioxidant smoothie",
-      "exercise": "meditation"
-    }
+    "name": "V-Control",
+    "category": "Digestion",
+    "price": 39.99,
+    "description": "Metabolism support that helps with appetite control, fat loss, and thyroid stimulation[cite: 747].",
+    "image_path": "images/v-control.jpg",
+    "api_keywords": { "recipe": "fiber rich", "exercise": "pilates" }
   },
   {
     "id": "vh-009",
-    "name": "V-italboost",
+    "name": "SmartBiotics (Kids)",
+    "category": "Digestion",
+    "price": 24.99,
+    "description": "Improves digestion and boosts learning in children. Balances intestinal flora[cite: 1463].",
+    "image_path": "images/smartbiotics.jpg",
+    "api_keywords": { "recipe": "fruit smoothie", "exercise": "play" }
+  },
+  {
+    "id": "vh-010",
+    "name": "V-Organex",
+    "category": "Detox",
+    "price": 39.99,
+    "description": "Detoxifies the liver, cleanses bile ducts, and revitalizes the body. Supports allergy control[cite: 185].",
+    "image_path": "images/v-organex.jpg",
+    "api_keywords": { "recipe": "green juice", "exercise": "stretching" }
+  },
+  {
+    "id": "vh-011",
+    "name": "V-Te Detox",
+    "category": "Detox",
+    "price": 24.99,
+    "description": "Herbal tea that promotes weight loss, eliminates toxins, and reduces abdominal inflammation[cite: 232].",
+    "image_path": "images/v-te-detox.jpg",
+    "api_keywords": { "recipe": "detox water", "exercise": "yoga" }
+  },
+  {
+    "id": "vh-012",
+    "name": "V-Glutation",
+    "category": "Detox",
+    "price": 49.99,
+    "description": "The 'Master Antioxidant'. Nourishes and regenerates at the cellular level. Anti-aging protection[cite: 465].",
+    "image_path": "images/v-glutation.jpg",
+    "api_keywords": { "recipe": "antioxidant smoothie", "exercise": "meditation" }
+  },
+  {
+    "id": "vh-013",
+    "name": "V-ItalBoost",
     "category": "Detox",
     "price": 29.99,
-    "description": "Powerful immune system booster to fight seasonal allergies and strengthen defenses.",
+    "description": "Powerful immune booster and natural antibiotic. Helps control allergies and infections[cite: 839].",
     "image_path": "images/v-italboost.jpg",
     "api_keywords": { "recipe": "ginger tea", "exercise": "light jogging" }
   },
   {
-    "id": "vh-010",
+    "id": "vh-014",
+    "name": "VitalPro",
+    "category": "Strength",
+    "price": 49.99,
+    "description": "Premium whey protein with Omega 3 and antioxidants. Improves cognitive level and reinforces immunity[cite: 981].",
+    "image_path": "images/vitalpro.jpg",
+    "api_keywords": { "recipe": "protein shake", "exercise": "weightlifting" }
+  },
+  {
+    "id": "vh-015",
+    "name": "V-Collagen",
+    "category": "Strength",
+    "price": 39.99,
+    "description": "Hydrolyzed collagen that supports bone health, strength, and tissue regeneration. Promotes youthful skin[cite: 791].",
+    "image_path": "images/v-collagen.jpg",
+    "api_keywords": { "recipe": "bone broth", "exercise": "resistance training" }
+  },
+  {
+    "id": "vh-016",
     "name": "V-Curcumax",
     "category": "Strength",
     "price": 39.99,
-    "description": "Potent anti-inflammatory blend of Turmeric and MSM to reduce pain and oxidation.",
+    "description": "Potent anti-inflammatory with Turmeric and Selenium. Strengthens the immune system and relieves joint pain[cite: 692].",
     "image_path": "images/v-curcumax.jpg",
     "api_keywords": { "recipe": "golden milk", "exercise": "swimming" }
   },
   {
-    "id": "vh-011",
+    "id": "vh-017",
     "name": "V-Itadol",
     "category": "Strength",
     "price": 34.99,
-    "description": "Specialized joint support with Glucosamine and MSM to improve mobility and reduce pain.",
+    "description": "Relieves musculoskeletal disorders, arthritis, and acute pain. Reduces joint inflammation[cite: 425].",
     "image_path": "images/v-itadol.jpg",
-    "api_keywords": { "recipe": "bone broth", "exercise": "stretching" }
+    "api_keywords": { "recipe": "salmon", "exercise": "stretching" }
   },
   {
-    "id": "vh-012",
-    "name": "Omega 3",
-    "category": "Strength",
-    "price": 24.99,
-    "description": "Essential fatty acids for heart health, brain function, and joint lubrication.",
-    "image_path": "images/omega-3.jpg",
-    "api_keywords": { "recipe": "grilled salmon", "exercise": "weightlifting" }
-  },
-  {
-    "id": "vh-013",
-    "name": "Vitarly-L",
-    "category": "Strength",
-    "price": 32.99,
-    "description": "Circulation and vitality booster with L-Arginine for improved physical performance.",
-    "image_path": "images/vitarly-l.jpg",
-    "api_keywords": { "recipe": "spinach salad", "exercise": "cycling" }
-  },
-  {
-    "id": "vh-014",
-    "name": "V-Itaren",
-    "category": "Restore",
-    "price": 34.99,
-    "description": "Targeted support for kidney health and urinary tract detoxification.",
-    "image_path": "images/v-itaren.jpg",
-    "api_keywords": { "recipe": "cranberry juice", "exercise": "walking" }
-  },
-  {
-    "id": "vh-015",
+    "id": "vh-018",
     "name": "V-Italay",
     "category": "Restore",
     "price": 29.99,
-    "description": "Natural stress relief and sleep aid with Valerian and Passionflower.",
+    "description": "Promotes calm and tranquility. Reduces stress and anxiety while regulating sleep cycles[cite: 646].",
     "image_path": "images/v-italay.jpg",
     "api_keywords": { "recipe": "chamomile tea", "exercise": "yoga" }
   },
   {
-    "id": "vh-016",
+    "id": "vh-019",
+    "name": "V-Omega 3",
+    "category": "Restore",
+    "price": 24.99,
+    "description": "Supports heart and brain health. Prevents heart attacks and protects cells from oxidative damage[cite: 596].",
+    "image_path": "images/v-omega3.jpg",
+    "api_keywords": { "recipe": "grilled fish", "exercise": "walking" }
+  },
+  {
+    "id": "vh-020",
     "name": "V-Asculax",
     "category": "Restore",
     "price": 29.99,
-    "description": "Circulatory support formula to help with varicose veins and vascular health.",
+    "description": "Improves blood flow and heart health. Reduces inflammation, varicose veins, and hypertension[cite: 545].",
     "image_path": "images/v-asculax.jpg",
     "api_keywords": { "recipe": "berries", "exercise": "leg lifts" }
   },
   {
-    "id": "vh-017",
-    "name": "V-Daily",
+    "id": "vh-021",
+    "name": "NeuroKafe",
     "category": "Restore",
-    "price": 24.99,
-    "description": "Complete daily multivitamin to cover all your essential nutritional bases.",
-    "image_path": "images/v-daily.jpg",
-    "api_keywords": { "recipe": "fruit salad", "exercise": "hiking" }
+    "price": 34.99,
+    "description": "Cognitive coffee that reduces oxidative stress, improves memory, and promotes mental clarity[cite: 1254].",
+    "image_path": "images/neurokafe.jpg",
+    "api_keywords": { "recipe": "walnuts", "exercise": "meditation" }
+  },
+  {
+    "id": "vh-022",
+    "name": "V-Itaren",
+    "category": "Restore",
+    "price": 34.99,
+    "description": "Supports kidney health and fluid balance. Detoxifies kidneys and reduces water retention[cite: 337].",
+    "image_path": "images/v-itaren.jpg",
+    "api_keywords": { "recipe": "cranberry juice", "exercise": "walking" }
+  },
+  {
+    "id": "vh-023",
+    "name": "LovKafe",
+    "category": "Restore",
+    "price": 34.99,
+    "description": "Vitality coffee that revitalizes sexual life, improves mood, and balances hormones[cite: 1206].",
+    "image_path": "images/lovkafe.jpg",
+    "api_keywords": { "recipe": "dark chocolate", "exercise": "kegels" }
   }
 ]

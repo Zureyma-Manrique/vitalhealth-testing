@@ -1,27 +1,106 @@
-// File: js/quiz.js
-
 import { getElement, renderTemplate, saveQuizResult } from './utils.js';
 import { getKeywordsForCategory, findProductsByCategory } from './productData.js';
 import { getRecipes, getExercises } from './externalServices.js';
-import * as cartModule from './cart.js'; // Import cart functionality
+import * as cartModule from './cart.js'; 
 
-// The quiz questions and mapping (based on your product categories)
+// --- 10 QUESTIONS DATA ---
 const QUIZ_STEPS = [
     {
-        question: "What's your primary health goal?",
+        // Question 1: DETERMINES THE PRODUCT CATEGORY
+        question: "What is your primary health goal right now?",
         options: [
-            { text: "More Energy", category: "Energy" },
-            { text: "Better Digestion", category: "Digestion" },
-            { text: "Detox & Cleanse", category: "Detox" },
-            { text: "Build Strength", category: "Strength" },
-            { text: "Restore & Rest", category: "Restore" }
+            { text: "⚡ More Energy & Focus", category: "Energy" },
+            { text: "🧘 Better Digestion/Gut Health", category: "Digestion" },
+            { text: "🌿 Detox & Cleanse Body", category: "Detox" },
+            { text: "💪 Build Muscle & Strength", category: "Strength" },
+            { text: "🌙 Better Sleep & Recovery", category: "Restore" }
         ],
     },
-    // Add more steps here for a more complex quiz (e.g., secondary concerns)
+    {
+        question: "How would you describe your current activity level?",
+        options: [
+            { text: "Sedentary (Desk job, little exercise)" },
+            { text: "Light Active (Walking, occasional yoga)" },
+            { text: "Active (Gym 2-3x a week)" },
+            { text: "Athlete (Training 5+ times a week)" }
+        ],
+    },
+    {
+        question: "How many hours of sleep do you get on average?",
+        options: [
+            { text: "Less than 5 hours" },
+            { text: "5-6 hours" },
+            { text: "7-8 hours (Optimal)" },
+            { text: "9+ hours" }
+        ],
+    },
+    {
+        question: "How much water do you drink daily?",
+        options: [
+            { text: "Hardly any, mostly coffee/soda" },
+            { text: "1-2 glasses" },
+            { text: "3-5 glasses" },
+            { text: "8+ glasses (Hydrated!)" }
+        ],
+    },
+    {
+        question: "What best describes your diet?",
+        options: [
+            { text: "Anything and everything" },
+            { text: "Vegetarian / Vegan" },
+            { text: "Keto / Low Carb" },
+            { text: "Balanced / Whole Foods" }
+        ],
+    },
+    {
+        question: "How often do you feel stressed?",
+        options: [
+            { text: "Rarely, I'm pretty chill" },
+            { text: "Sometimes, usually work-related" },
+            { text: "Often, I feel overwhelmed" },
+            { text: "Always, I need a break" }
+        ],
+    },
+    {
+        question: "Do you currently take any supplements?",
+        options: [
+            { text: "No, never" },
+            { text: "Sometimes (Multivitamin)" },
+            { text: "Yes, regularly" },
+            { text: "Yes, I have a full stack" }
+        ],
+    },
+    {
+        question: "What is your biggest barrier to being healthy?",
+        options: [
+            { text: "Lack of Time" },
+            { text: "Lack of Motivation" },
+            { text: "Cost / Budget" },
+            { text: "Don't know where to start" }
+        ],
+    },
+    {
+        question: "How is your energy level in the afternoon (2 PM - 4 PM)?",
+        options: [
+            { text: "High, keeps going" },
+            { text: "Moderate" },
+            { text: "Low, I need a nap" },
+            { text: "Crashed completely" }
+        ],
+    },
+    {
+        question: "How committed are you to starting a new regimen?",
+        options: [
+            { text: "Just browsing" },
+            { text: "Interested" },
+            { text: "Ready to start today!" },
+            { text: "100% All In" }
+        ],
+    }
 ];
 
 let currentStep = 0;
-let finalCategory = '';
+let finalCategory = 'Energy'; // Default fallback
 
 export function initQuiz() {
     currentStep = 0;
@@ -32,14 +111,19 @@ function renderQuizStep() {
     const app = getElement('#app');
     if (currentStep < QUIZ_STEPS.length) {
         const step = QUIZ_STEPS[currentStep];
-        const optionsHtml = step.options.map((option) => `
-            <button class="quiz-option cta-button" data-category="${option.category}">${option.text}</button>
-        `).join('');
+        
+        // Map options to buttons
+        const optionsHtml = step.options.map((option) => {
+            // Only add data-category if this option HAS a category (Question 1)
+            const catAttr = option.category ? `data-category="${option.category}"` : '';
+            return `<button class="quiz-option cta-button" ${catAttr}>${option.text}</button>`;
+        }).join('');
 
         const quizHtml = `
             <div class="quiz-container">
                 <div class="quiz-header">
-                    <h2>VitalityGuide - Quiz</h2>
+                    <h2>Vitality Finder Quiz</h2>
+                    <p>Question ${currentStep + 1} of ${QUIZ_STEPS.length}</p>
                 </div>
                 <div class="quiz-progress">
                     <div class="quiz-progress-bar" style="width: ${((currentStep + 1) / QUIZ_STEPS.length) * 100}%"></div>
@@ -54,19 +138,39 @@ function renderQuizStep() {
         `;
         renderTemplate(app, quizHtml);
         attachQuizListeners();
+    } else {
+        // No more steps? Show results
+        showResultsPage();
     }
 }
 
 function attachQuizListeners() {
-    getElement('.quiz-options').addEventListener('click', (e) => {
-        if (e.target.classList.contains('quiz-option')) {
-            finalCategory = e.target.dataset.category;
-            currentStep++;
-            showResultsPage(); // Go straight to results since we only have one step
-        }
-    });
+    const optionsContainer = getElement('.quiz-options');
+    if (optionsContainer) {
+        optionsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('quiz-option')) {
+                // 1. Capture Category (Only from Question 1)
+                if (e.target.dataset.category) {
+                    finalCategory = e.target.dataset.category;
+                    console.log("Category set to:", finalCategory);
+                }
+
+                // 2. Advance Quiz
+                currentStep++;
+                
+                // 3. Check if done
+                if (currentStep < QUIZ_STEPS.length) {
+                    renderQuizStep();
+                } else {
+                    showResultsPage();
+                }
+            }
+        });
+    }
 }
 
+
+// --- RESULTS GENERATION ---
 
 async function showResultsPage() {
     const app = getElement('#app');
@@ -74,7 +178,7 @@ async function showResultsPage() {
     renderTemplate(app, '<h2>Generating your personalized plan...</h2><p>Please wait while we coordinate your nutrition and activity data.</p>'); 
     
     const category = finalCategory;
-    let recipes = { results: [] }; // Initialize variables to ensure they exist
+    let recipes = { results: [] };
     let exercises = [];
     let recommendedProducts = [];
 
@@ -87,43 +191,38 @@ async function showResultsPage() {
         
         recommendedProducts = fetchedProducts;
 
-        // 2. Fetch External Data (The part that is currently failing)
-        // Use Promise.all with .catch() on individual calls to prevent the whole function from halting 
-        // if one API key is invalid or rate-limited (Asynchronous Data Coordination).
-        
+        // 2. Fetch External Data
         const [fetchedRecipes, fetchedExercises] = await Promise.all([
             getRecipes(keywords.recipe).catch(err => {
                 console.error("External Recipe Fetch Failed:", err);
-                return { results: [] }; // Return empty structure on failure
+                return { results: [] }; 
             }),
             getExercises(keywords.exercise).catch(err => {
                 console.error("External Exercise Fetch Failed:", err);
-                return []; // Return empty array on failure
+                return []; 
             })
         ]);
 
         recipes = fetchedRecipes;
         exercises = fetchedExercises;
 
-        // Save result for LocalStorage Persistence
+        // Save result
         saveQuizResult({ category, recommendedProducts });
         
     } catch (error) {
-        // This catch block handles errors in local data loading or critical JS failures
         console.error("Critical error during plan generation:", error);
-        // Fallback: If local data fails, render only the error message
-        renderTemplate(app, '<h2>Error!</h2><p>We could not load the product data to generate your plan. Please check the console.</p>');
-        return; // Stop execution
+        // If local data fails (e.g. products.json path is wrong), show error
+        renderTemplate(app, '<h2>Error!</h2><p>We could not load the product data. Please ensure "products.json" is in the correct folder.</p>');
+        return; 
     }
     
     renderResultsPage(category, recommendedProducts, recipes, exercises);
 }
 
-
 function renderResultsPage(category, products, recipeData, exerciseData) {
     const app = getElement('#app');
     
-    // Products Grid (3 Recommendations)
+    // Products Grid
     const productListHtml = products.map(p => `
         <div class="product-card">
             <img src="${p.image_path}" alt="${p.name}">
@@ -133,28 +232,30 @@ function renderResultsPage(category, products, recipeData, exerciseData) {
         </div>
     `).join('');
 
-    // Recipes (Error handling for API failures)
-    const recipesHtml = recipeData && recipeData.results ? recipeData.results.slice(0, 3).map(r => `
-        <div class="card recipe-card">
-            <img src="${r.image}" alt="${r.title}">
-            <p class="card-title">${r.title}</p>
-            <p class="card-description">Curated for ${category} goals.</p>
-        </div>
-    `).join('') : '<p>We are temporarily unable to fetch recipes. Please visit our Nutrition Blog for advice!</p>'; 
+    // Recipes
+    const recipesHtml = recipeData && recipeData.results && recipeData.results.length > 0 
+        ? recipeData.results.slice(0, 3).map(r => `
+            <div class="card recipe-card">
+                <img src="${r.image}" alt="${r.title}">
+                <p class="card-title">${r.title}</p>
+                <p class="card-description">Curated for ${category} goals.</p>
+            </div>`).join('') 
+        : '<p>We are temporarily unable to fetch recipes. Please visit our Nutrition Blog for advice!</p>'; 
 
-    // Exercises (Error handling for API failures)
-    const exercisesHtml = exerciseData && Array.isArray(exerciseData) && exerciseData.length > 0 ? exerciseData.slice(0, 3).map(e => `
-        <div class="card exercise-card">
-            <p class="card-title">${e.name} (${e.type})</p>
-            <p class="card-description">Focus: ${e.muscle}</p>
-        </div>
-    `).join('') : '<p>We are temporarily unable to fetch exercises. Try a basic walking routine today!</p>'; 
+    // Exercises
+    const exercisesHtml = exerciseData && Array.isArray(exerciseData) && exerciseData.length > 0 
+        ? exerciseData.slice(0, 3).map(e => `
+            <div class="card exercise-card">
+                <p class="card-title">${e.name}</p>
+                <p class="card-description">Type: ${e.type} | Muscle: ${e.muscle}</p>
+            </div>`).join('') 
+        : '<p>We are temporarily unable to fetch exercises. Try a basic walking routine today!</p>'; 
 
     const resultsHtml = `
         <div class="results-container">
             <div class="results-header">
                 <h2>Your Perfect Match</h2>
-                <p>Based on your goal (${category}), here's your personalized wellness plan.</p>
+                <p>Based on your goal <strong>(${category})</strong>, here's your personalized wellness plan.</p>
             </div>
             
             <div class="results-grid">
@@ -186,7 +287,6 @@ function renderResultsPage(category, products, recipeData, exerciseData) {
     attachAddToCartListeners();
 }
 
-
 function attachAddToCartListeners() {
     document.querySelectorAll('.add-to-cart-btn').forEach(button => {
         button.addEventListener('click', (e) => {
@@ -198,7 +298,7 @@ function attachAddToCartListeners() {
                 image_path: data.image
             };
             cartModule.addToCart(product);
-            alert(`${product.name} added to cart! Total items: ${cartModule.getCart().length}`); // Simple UX feedback
+            alert(`${product.name} added to cart!`);
         });
     });
 }
