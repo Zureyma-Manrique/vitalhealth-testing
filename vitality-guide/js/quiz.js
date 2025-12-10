@@ -191,16 +191,10 @@ async function showResultsPage() {
         
         recommendedProducts = fetchedProducts;
 
-        // 2. Fetch External Data
+        // 2. Fetch External Data - Pass category to recipes for fallback
         const [fetchedRecipes, fetchedExercises] = await Promise.all([
-            getRecipes(keywords.recipe).catch(err => {
-                console.error("External Recipe Fetch Failed:", err);
-                return { results: [] }; 
-            }),
-            getExercises(keywords.exercise).catch(err => {
-                console.error("External Exercise Fetch Failed:", err);
-                return []; 
-            })
+            getRecipes(keywords.recipe, category),
+            getExercises(keywords.exercise)
         ]);
 
         recipes = fetchedRecipes;
@@ -240,7 +234,7 @@ function renderResultsPage(category, products, recipeData, exerciseData) {
                 <p class="card-title">${r.title}</p>
                 <p class="card-description">Curated for ${category} goals.</p>
             </div>`).join('') 
-        : '<p>We are temporarily unable to fetch recipes. Please visit our Nutrition Blog for advice!</p>'; 
+        : '<p>Recipe recommendations are being loaded...</p>'; 
 
     // Exercises
     const exercisesHtml = exerciseData && Array.isArray(exerciseData) && exerciseData.length > 0 
@@ -249,7 +243,7 @@ function renderResultsPage(category, products, recipeData, exerciseData) {
                 <p class="card-title">${e.name}</p>
                 <p class="card-description">Type: ${e.type} | Muscle: ${e.muscle}</p>
             </div>`).join('') 
-        : '<p>We are temporarily unable to fetch exercises. Try a basic walking routine today!</p>'; 
+        : '<p>Exercise recommendations are being loaded...</p>'; 
 
     const resultsHtml = `
         <div class="results-container">
