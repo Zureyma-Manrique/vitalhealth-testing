@@ -6,7 +6,7 @@ const NINJA_KEY = 'yQdAKB2fLV7KW7y/m8B6GQ==yQiFLHiJAjys6My5';
 
 export async function getRecipes(query) {
     try {
-        // Fetch 3 recipes based on query [cite: 17]
+        // Fetch 3 recipes based on query 
         const response = await fetch(`${RECIPE_URL}?apiKey=${SPOONACULAR_KEY}&query=${query}&number=3`);
         const data = await response.json();
         console.log(`Success! Found recipes for "${query}":`, data);
@@ -18,7 +18,7 @@ export async function getRecipes(query) {
 
 export async function getExercises(type) {
     try {
-        // Fetch exercises based on type [cite: 18]
+        // Fetch exercises based on type 
         const response = await fetch(`${EXERCISE_URL}?type=${type}`, {
             headers: { 'X-Api-Key': NINJA_KEY }
         });
