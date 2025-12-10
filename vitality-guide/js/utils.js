@@ -11,14 +11,14 @@ export function renderTemplate(parent, html, clear = true) {
     parent.insertAdjacentHTML('beforeend', html);
 }
 
-// --- LocalStorage Management (My Regimen Persistence) ---
+// --- Session Storage Management (Quiz Results Persistence) ---
 const QUIZ_KEY = 'vitality-quiz-result';
 
 export function saveQuizResult(result) {
-    localStorage.setItem(QUIZ_KEY, JSON.stringify(result));
+    sessionStorage.setItem(QUIZ_KEY, JSON.stringify(result));
 }
 
 export function loadQuizResult() {
-    const result = localStorage.getItem(QUIZ_KEY);
+    const result = sessionStorage.getItem(QUIZ_KEY);
     return result ? JSON.parse(result) : null;
 }

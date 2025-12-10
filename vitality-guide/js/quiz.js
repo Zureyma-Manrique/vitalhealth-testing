@@ -1,12 +1,19 @@
 import { getElement, renderTemplate, saveQuizResult } from './utils.js';
 import { getKeywordsForCategory, findProductsByCategory } from './productData.js';
 import { getRecipes, getExercises } from './externalServices.js';
-import * as cartModule from './cart.js'; 
+import * as cartModule from './cart.js';
+import { 
+    getQuizStepTemplate, 
+    getLoadingTemplate, 
+    getErrorTemplate,
+    getProductCardTemplate,
+    getRecipeCardTemplate,
+    getExerciseCardTemplate,
+    getResultsPageTemplate
+} from '../templates/quizTemplates.js';
 
-// --- 10 QUESTIONS DATA ---
 const QUIZ_STEPS = [
     {
-        // Question 1: DETERMINES THE PRODUCT CATEGORY
         question: "What is your primary health goal right now?",
         options: [
             { text: "⚡ More Energy & Focus", category: "Energy" },
@@ -100,7 +107,7 @@ const QUIZ_STEPS = [
 ];
 
 let currentStep = 0;
-let finalCategory = 'Energy'; // Default fallback
+let finalCategory = 'Energy';
 
 export function initQuiz() {
     currentStep = 0;
@@ -111,35 +118,10 @@ function renderQuizStep() {
     const app = getElement('#app');
     if (currentStep < QUIZ_STEPS.length) {
         const step = QUIZ_STEPS[currentStep];
-        
-        // Map options to buttons
-        const optionsHtml = step.options.map((option) => {
-            // Only add data-category if this option HAS a category (Question 1)
-            const catAttr = option.category ? `data-category="${option.category}"` : '';
-            return `<button class="quiz-option cta-button" ${catAttr}>${option.text}</button>`;
-        }).join('');
-
-        const quizHtml = `
-            <div class="quiz-container">
-                <div class="quiz-header">
-                    <h2>Vitality Finder Quiz</h2>
-                    <p>Question ${currentStep + 1} of ${QUIZ_STEPS.length}</p>
-                </div>
-                <div class="quiz-progress">
-                    <div class="quiz-progress-bar" style="width: ${((currentStep + 1) / QUIZ_STEPS.length) * 100}%"></div>
-                </div>
-                <div class="quiz-question">
-                    <p>${step.question}</p>
-                </div>
-                <div class="quiz-options">
-                    ${optionsHtml}
-                </div>
-            </div>
-        `;
+        const quizHtml = getQuizStepTemplate(step, currentStep, QUIZ_STEPS.length);
         renderTemplate(app, quizHtml);
         attachQuizListeners();
     } else {
-        // No more steps? Show results
         showResultsPage();
     }
 }
@@ -149,16 +131,13 @@ function attachQuizListeners() {
     if (optionsContainer) {
         optionsContainer.addEventListener('click', (e) => {
             if (e.target.classList.contains('quiz-option')) {
-                // 1. Capture Category (Only from Question 1)
                 if (e.target.dataset.category) {
                     finalCategory = e.target.dataset.category;
                     console.log("Category set to:", finalCategory);
                 }
 
-                // 2. Advance Quiz
                 currentStep++;
                 
-                // 3. Check if done
                 if (currentStep < QUIZ_STEPS.length) {
                     renderQuizStep();
                 } else {
@@ -169,13 +148,9 @@ function attachQuizListeners() {
     }
 }
 
-
-// --- RESULTS GENERATION ---
-
 async function showResultsPage() {
     const app = getElement('#app');
-    // Start Loading State
-    renderTemplate(app, '<h2>Generating your personalized plan...</h2><p>Please wait while we coordinate your nutrition and activity data.</p>'); 
+    renderTemplate(app, getLoadingTemplate()); 
     
     const category = finalCategory;
     let recipes = { results: [] };
@@ -183,7 +158,6 @@ async function showResultsPage() {
     let recommendedProducts = [];
 
     try {
-        // 1. Fetch Local Data and Keywords
         const [fetchedProducts, keywords] = await Promise.all([
             findProductsByCategory(category),
             getKeywordsForCategory(category)
@@ -191,22 +165,25 @@ async function showResultsPage() {
         
         recommendedProducts = fetchedProducts;
 
-        // 2. Fetch External Data - Pass category to recipes for fallback
         const [fetchedRecipes, fetchedExercises] = await Promise.all([
-            getRecipes(keywords.recipe, category),
-            getExercises(keywords.exercise)
+            getRecipes(keywords.recipe, category).catch(err => {
+                console.error("External Recipe Fetch Failed:", err);
+                return { results: [] }; 
+            }),
+            getExercises(keywords.exercise).catch(err => {
+                console.error("External Exercise Fetch Failed:", err);
+                return []; 
+            })
         ]);
 
         recipes = fetchedRecipes;
         exercises = fetchedExercises;
 
-        // Save result
         saveQuizResult({ category, recommendedProducts });
         
     } catch (error) {
         console.error("Critical error during plan generation:", error);
-        // If local data fails (e.g. products.json path is wrong), show error
-        renderTemplate(app, '<h2>Error!</h2><p>We could not load the product data. Please ensure "products.json" is in the correct folder.</p>');
+        renderTemplate(app, getErrorTemplate());
         return; 
     }
     
@@ -216,66 +193,17 @@ async function showResultsPage() {
 function renderResultsPage(category, products, recipeData, exerciseData) {
     const app = getElement('#app');
     
-    // Products Grid
-    const productListHtml = products.map(p => `
-        <div class="product-card">
-            <img src="${p.image_path}" alt="${p.name}">
-            <h3>${p.name}</h3>
-            <p>$${p.price.toFixed(2)}</p>
-            <button class="add-to-cart-btn cta-button" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-image="${p.image_path}">Add to Cart</button>
-        </div>
-    `).join('');
+    const productListHtml = products.map(p => getProductCardTemplate(p)).join('');
 
-    // Recipes
     const recipesHtml = recipeData && recipeData.results && recipeData.results.length > 0 
-        ? recipeData.results.slice(0, 3).map(r => `
-            <div class="card recipe-card">
-                <img src="${r.image}" alt="${r.title}">
-                <p class="card-title">${r.title}</p>
-                <p class="card-description">Curated for ${category} goals.</p>
-            </div>`).join('') 
+        ? recipeData.results.slice(0, 3).map(r => getRecipeCardTemplate(r, category)).join('') 
         : '<p>Recipe recommendations are being loaded...</p>'; 
 
-    // Exercises
     const exercisesHtml = exerciseData && Array.isArray(exerciseData) && exerciseData.length > 0 
-        ? exerciseData.slice(0, 3).map(e => `
-            <div class="card exercise-card">
-                <p class="card-title">${e.name}</p>
-                <p class="card-description">Type: ${e.type} | Muscle: ${e.muscle}</p>
-            </div>`).join('') 
+        ? exerciseData.slice(0, 3).map(e => getExerciseCardTemplate(e)).join('') 
         : '<p>Exercise recommendations are being loaded...</p>'; 
 
-    const resultsHtml = `
-        <div class="results-container">
-            <div class="results-header">
-                <h2>Your Perfect Match</h2>
-                <p>Based on your goal <strong>(${category})</strong>, here's your personalized wellness plan.</p>
-            </div>
-            
-            <div class="results-grid">
-                <div class="match-section product-recommendations">
-                    <h3>Your Top Recommendations</h3>
-                    <div class="product-list-grid">
-                        ${productListHtml}
-                    </div>
-                </div>
-
-                <div class="match-section nutrition-plan">
-                    <h3>🍽️ Nutrition Plan - Eat This</h3>
-                    <div class="recipes-grid">
-                        ${recipesHtml}
-                    </div>
-                </div>
-
-                <div class="match-section activity-plan">
-                    <h3>🏃 Activity Plan - Do This</h3>
-                    <div class="exercises-list">
-                        ${exercisesHtml}
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
+    const resultsHtml = getResultsPageTemplate(category, productListHtml, recipesHtml, exercisesHtml);
 
     renderTemplate(app, resultsHtml);
     attachAddToCartListeners();

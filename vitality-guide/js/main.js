@@ -1,6 +1,6 @@
 import { initQuiz } from './quiz.js';
 import { getElement, loadQuizResult } from './utils.js';
-import { updateCartIcon } from './cart.js';
+import { updateCartIcon, showCartPage } from './cart.js';
 import { getProducts } from './productData.js';
 
 async function init() {
@@ -17,6 +17,15 @@ async function init() {
     if (startButton) {
         startButton.addEventListener('click', () => {
             initQuiz();
+        });
+    }
+    
+    // Attach listener to Cart Icon
+    const cartIcon = getElement('.cart-icon');
+    if (cartIcon) {
+        cartIcon.style.cursor = 'pointer';
+        cartIcon.addEventListener('click', () => {
+            showCartPage();
         });
     }
 

@@ -62,6 +62,17 @@ const EXERCISE_URL = 'https://api.api-ninjas.com/v1/exercises';
 const SPOONACULAR_KEY = '3836092ca4ce4185b1067e447da390be';
 const NINJA_KEY = 'yQdAKB2fLV7KW7y/m8B6GQ==yQiFLHiJAjys6My5';
 
+// Helper function to get category for fallback
+function getCategoryFromQuery(query) {
+    const queryLower = query.toLowerCase();
+    if (queryLower.includes('citrus') || queryLower.includes('protein') || queryLower.includes('spinach')) return 'Energy';
+    if (queryLower.includes('yogurt') || queryLower.includes('fiber')) return 'Digestion';
+    if (queryLower.includes('green') || queryLower.includes('detox') || queryLower.includes('antioxidant')) return 'Detox';
+    if (queryLower.includes('protein shake') || queryLower.includes('bone broth') || queryLower.includes('salmon')) return 'Strength';
+    if (queryLower.includes('chamomile') || queryLower.includes('golden milk') || queryLower.includes('fish')) return 'Restore';
+    return 'Energy';
+}
+
 export async function getRecipes(query, category = 'Energy') {
     try {
         const response = await fetch(
@@ -91,9 +102,12 @@ export async function getRecipes(query, category = 'Energy') {
         console.error("Recipe Fetch Error:", err);
         console.log("Using fallback recipe data...");
         
+        // Try to determine category from query if not provided
+        const fallbackCategory = category || getCategoryFromQuery(query);
+        
         // Return fallback data with proper structure
         return {
-            results: FALLBACK_RECIPES[category] || FALLBACK_RECIPES.Energy
+            results: FALLBACK_RECIPES[fallbackCategory] || FALLBACK_RECIPES.Energy
         };
     }
 }
